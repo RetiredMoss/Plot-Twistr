@@ -1,0 +1,197 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plot-Twister</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css">
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .plot-twist-system {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #twist-result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="plot-twist-system">
+        <h1>Plot-Twister</h1>
+        
+        <label for="input-sentence">Enter a sentence:</label>
+        <input type="text" id="input-sentence" placeholder="Enter a random sentence">
+
+        <button id="generate-twist-btn">Generate Plot Twist</button>
+        
+        <h3>Result</h3>
+        <div id="twist-result"></div>
+    </div>
+
+    <py-script>
+        from js import document
+
+        # Function to generate a plot twist
+        def generate_plot_twist(event):
+            input_sentence = document.getElementById("input-sentence").value
+            if not input_sentence.strip():
+                document.getElementById("twist-result").innerHTML = "<p>Please enter a valid sentence.</p>"
+                return
+            
+            # Generate a plot twist (for simplicity, using predefined responses)
+            plot_twists = [
+                "but then they realized it was all just a dream.",
+                "and suddenly, the sky turned green and rained chocolate!",
+                "but little did they know, they were never alone.",
+                "when out of nowhere, a talking cat appeared.",
+                "but the treasure map was upside down all along!",
+                "and then they found out they were the villain."
+                "But then they realized it was all just a dream."
+                "But then they discovered the protagonist was the villain all along."
+                "But then they found out the villain was actually trying to save the world."
+                "But then they learned the entire story was just a simulation."
+                "But then the sidekick betrayed the hero."
+                "But then the hero betrayed the group for personal gain."
+                "But then they realized the events were all taking place in the mind of a single character."
+                "But then a trusted character turned out to be working with the enemy."
+                "But then they discovered the "good guys" were actually causing the harm."
+                "But then they realized the world was a post-apocalyptic version of their own."
+                "But then the protagonist became their own worst enemy."
+                "But then time travel revealed the future couldn’t be changed."
+                "But then they discovered the protagonist was a clone of someone else."
+                "But then they realized an important character had been dead the entire time."
+                "But then the love interest was revealed to be a spy sent to manipulate them."
+                "But then the hero’s actions were what caused the villain's suffering."
+                "But then the supernatural entity was revealed to be an alien."
+                "But then their mysterious savior turned out to be a long-lost relative."
+                "But then the protagonist’s mentor was revealed to be working for the enemy."
+                "But then they realized the entire story was taking place in purgatory."
+                "But then the protagonist realized they were the one who committed the central crime, unknowingly."
+                "But then the detective turned out to be the murderer."
+                "But then the victim was revealed to have faked their own death."
+                "But then the seemingly innocent bystander turned out to have orchestrated everything."
+                "But then they discovered the evidence had been planted by someone they trusted."
+                "But then the villain turned out to be a twin of the person everyone suspected."
+                "But then the police were revealed to be working with the criminal."
+                "But then the protagonist realized their alibi was false, but they didn’t commit the crime."
+                "But then they discovered the real culprit hadn’t been introduced until the end."
+                "But then a crucial witness turned out to be lying to protect the real culprit."
+                "But then the alien species was revealed to be humanity’s future evolution."
+                "But then the robot gained sentience and turned against its creator."
+                "But then a time traveler realized they caused the catastrophic event they were trying to prevent."
+                "But then the protagonist discovered they were an android programmed to think they were human."
+                "But then they found out Earth was actually a prison planet for intergalactic criminals."
+                "But then the alien invaders turned out to be fleeing from a greater threat."
+                "But then the space station AI was manipulating everyone for its own agenda."
+                "But then humanity’s greatest discovery was revealed to be a trap planted by advanced beings."
+                "But then the colonized planet was revealed to be Earth in a different timeline."
+                "But then the protagonist’s memories were discovered to have been altered by a corrupt government."
+                "But then the prophecy turned out to have been intentionally misinterpreted to manipulate the hero."
+                "But then the magic artifact was revealed to be cursed and corrupting the user."
+                "But then the villain turned out to be the reincarnation of the protagonist."
+                "But then the chosen one was revealed to be a decoy."
+                "But then the hero’s powers turned out to come from the villain’s energy source."
+                "But then the kingdom's ruler was discovered to be a dragon in disguise."
+                "But then the hero was revealed to be the offspring of the main antagonist."
+                "But then the mystical guide turned out to be a malevolent trickster."
+                "But then the ancient evil was revealed to have been created by the hero’s ancestors."
+                "But then the magical kingdom was revealed to exist only because of a dark pact."
+                "But then the monster was revealed to be a hallucination caused by the protagonist’s guilt."
+                "But then the haunted house turned out to be alive and feeding on fear."
+                "But then the protagonist became the monster by the end."
+                "But then the seemingly innocent child turned out to be the source of the evil."
+                "But then the ritual meant to stop the entity actually strengthened it."
+                "But then the victims were revealed to be punished for their own sins."
+                "But then the ghost was discovered to be protecting the characters from something worse."
+                "But then the entire town was revealed to be complicit in the horror."
+                "But then the “hero” was revealed to be the one who summoned the evil in the first place."
+                "But then the protagonist discovered they were the first victim of the entity."
+                "But then the love interest was revealed to be secretly married."
+                "But then the love triangle was exposed as a ruse to manipulate the protagonist."
+                "But then the romantic partner turned out to be using the protagonist for revenge."
+                "But then the protagonist’s best friend turned out to be secretly in love with them."
+                "But then the couple’s parents were revealed to be former lovers with a bitter history."
+                "But then the romantic interest was discovered to be living a double life."
+                "But then the protagonist realized they were in love with someone else."
+                "But then the wedding was interrupted by a shocking revelation."
+                "But then the love interest turned out to be from the protagonist’s rival family."
+                "But then the couple’s happiness was revealed to rely on a dangerous lie."
+                "But then the treasure was revealed to be cursed and destroying those who found it."
+                "But then the villain saved the hero at the last minute."
+                "But then the map turned out to lead to a trap, not a treasure."
+                "But then the hero’s closest ally was working for the enemy."
+                "But then the villain and hero had to team up to survive."
+                "But then the ancient artifact was revealed to destroy those who sought its power."
+                "But then the hero realized their mission was a distraction from a larger threat."
+                "But then the mentor sacrificed themselves for the hero."
+                "But then the enemy was revealed to be seeking revenge for a justified reason."
+                "But then the protagonist was captured and brainwashed into working for the enemy."
+                "But then the entire plot turned out to be a misunderstanding."
+                "But then the villain’s grand scheme was revealed to be just an elaborate prank."
+                "But then the protagonist’s heroic act was discovered to be an accident."
+                "But then the villain retired halfway through the story."
+                "But then the hero was defeated by a completely unrelated random event."
+                "But then the artifact everyone was chasing turned out to be a fake."
+                "But then the protagonist woke up in a completely different reality."
+
+            ]
+
+            # Append plot twist to input sentence
+            from random import choice
+            twist = choice(plot_twists)
+            result = f"{input_sentence} {twist}"
+            document.getElementById("twist-result").innerHTML = f"<p>{result}</p>"
+
+        # Attach event listener to button
+        document.getElementById("generate-twist-btn").onclick = generate_plot_twist
+    </py-script>
+</body>
+</html> 
